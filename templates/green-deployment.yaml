@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "blue-green.fullname" . }}-green
+  labels:
+    app: {{ include "blue-green.name" . }}-green
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: green
+  template:
+    metadata:
+      labels:
+        app: green
+    spec:
+      containers:
+        - name: bluegreendep-v2
+          image: "{{ .Values.green.image.repository }}:{{ .Values.green.image.tag }}"
+          imagePullPolicy: {{ .Values.green.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+

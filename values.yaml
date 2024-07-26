@@ -1,0 +1,32 @@
+# values.yaml
+
+replicaCount: 3
+
+blue:
+  image:
+    repository: sreekanthpv12/bluegreendep-v1
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8005
+    targetPort: 80
+
+green:
+  image:
+    repository: sreekanthpv12/bluegreendep-v2
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8006
+    targetPort: 80
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
