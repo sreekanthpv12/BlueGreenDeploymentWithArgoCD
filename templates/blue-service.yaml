@@ -4,7 +4,7 @@ metadata:
   name: {{ include "blue-green.fullname" . }}-blue
 spec:
   selector:
-    app: bluegreen
+    app: green
   ports:
     - protocol: TCP
       port: {{ .Values.blue.service.port }}
